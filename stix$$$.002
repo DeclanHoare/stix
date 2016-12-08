@@ -1,0 +1,16 @@
+(* nicht editieren ! *)
+var
+  sprach_start:longint;
+  textz_Fehler_beim_Entpacken_  :^string;
+  textz_entpacker_fuer  :^string;
+  textz_benutzung  :^string;
+  textz_Dateiname_Zielverzeichnis  :^string;
+  textz_Datei_nicht_gefunden  :^string;
+  textz_kein  :^string;
+  textz_gefunden  :^string;
+  textz_stError  :^string;
+  textz_stInitError  :^string;
+  textz_stReadError  :^string;
+  textz_stWriteError  :^string;
+  textz_stGetError  :^string;
+  textz_stPutError  :^string;

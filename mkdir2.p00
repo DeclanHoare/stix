@@ -1,0 +1,74 @@
+(* 27.01.1998 unxlink test.exe x\ -> runtime error 3 *)
+(* 01.04.1998 '/' '\'- Fehler *)
+unit mkdir2;
+
+interface
+
+procedure mkdir_verschachtelt(pfad:string);
+
+implementation
+
+procedure mkdir_verschachtelt(pfad:string);
+  var
+    fehler      :word;
+    pfad0,
+    pfad1,
+    pfad2       :string;
+    posp1,
+    posp2       :word;
+  begin
+    (* Laufwerk anlegen ??? *)
+    if copy(pfad,2,255)=copy('Z:\',2,255) then
+      exit;
+
+    (* Pfadstrich am Ende beseitigen *)
+    if length(pfad)>=length('X\') then
+      if pfad[length(pfad)] in ['/','\'] then
+        dec(pfad[0]);
+
+    (* Erstmal versuchen .. *)
+    (*$I-*)
+    mkdir(pfad);
+    (*$I+*)
+    fehler:=ioresult;
+
+    (* bei Fehler schrittweise .. *)
+    (* 5=Zugriff verweigert .. existiert schon *)
+    if fehler=3 then
+      begin
+        pfad0:='';    (* schon geschafft      *)
+        pfad1:='';    (* wird sofort angelegt *)
+        pfad2:=pfad;  (* noch uebrig          *)
+
+        if  (not (pfad2[length(pfad2)] in ['/','\']))
+        and (length(pfad2)>0)
+         then
+          pfad2:=pfad2+'\';
+
+        repeat
+          posp1:=pos('/',pfad2);
+          posp2:=pos('\',pfad2);
+          if (0<posp1) and (posp1<posp2) then
+            pfad1:=copy(pfad2,1,posp1)
+          else
+            pfad1:=copy(pfad2,1,posp2);
+          delete(pfad2,1,length(pfad1));
+          pfad1:=pfad0+pfad1;
+
+          if (* length(pfad1)>length('Y:\')
+          or *) length(pfad1)>=length('X\')
+           then
+            begin
+              dec(pfad1[0]);
+              (*$I-*)
+              mkdir(pfad1);
+              (*$I+*)
+              fehler:=ioresult;
+              inc(pfad1[0]);
+            end;
+          pfad0:=pfad1;
+        until pfad2='';
+      end;
+  end;
+
+end.

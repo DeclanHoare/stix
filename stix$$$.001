@@ -1,0 +1,33 @@
+(* nicht editieren ! *)
+procedure sprach_modul;assembler;(*&FRAME-*) (*&USES NONE*) (*$S-*)
+  asm
+    db   7,'<SPRA2>'
+    db   4,'ENDE'
+    dw  13
+    db  17,'error unpacking ('
+    db  23,'Fehler beim Entpacken ('
+    db  17,'decompressor for '
+    db  14,'Entpacker fÅr '
+    db   6,'usage '
+    db  10,'Benutzung '
+    db  25,' filemane Targetdirectory'
+    db  26,' Dateiname Zielverzeichnis'
+    db  16,'file not found !'
+    db  22,'Datei nicht gefunden !'
+    db   4,'no "'
+    db   6,'kein "'
+    db   9,'" found !'
+    db  12,'" gefunden !'
+    db  12,'Access error'
+    db  14,'Zugriffsfehler'
+    db  24,'Cannot initialize stream'
+    db  18,'Einrichtungsfehler'
+    db  25,'Read beyond end of stream'
+    db  33,'öber das Stromende hinaus gelesen'
+    db  20,'Cannot expand stream'
+    db  43,'Kann Strom nicht vergrî·ern (Schreibfehler)'
+    db  31,'Get of unregistered object type'
+    db  31,'Get of unregistered object type'
+    db  31,'Put of unregistered object type'
+    db  31,'Put of unregistered object type'
+  end;
