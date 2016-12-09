@@ -1,8 +1,7 @@
 # stix
 stix is an InstallShield 3 extractor created by Veit Kannegieser.
-This version has been modified so that it sort of works on Linux.
-It seems to crash as soon as it reaches a subdirectory, but it
-extracts files on the root of the archive correctly.
+This version has been modified so that it works on Linux.
+It is not complete, however (see Todo).
 
 # Building
 
@@ -12,7 +11,13 @@ To compile the rest of stix, use Virtual Pascal to compile stix.pas.
 
 # Todo
 
-I think the reason it's crashing on subdirectories is because of
-the use of backslashes for path delimiters. I need to figure out how
-to make the program convert these on the fly. But I have no idea
-where to start.
+Subdirectories in data.z files are treated as top-level directories
+with backslashes in their names. Since backslashes are not directory
+delimiters on Linux, this results in an ugly and incorrect directory
+structure being extracted. As a result, I've tried to add a bit of
+code that replaces backslashes with forward slashes in path names,
+but my attempt didn't end up doing anything as far as I could tell,
+so I removed it to avoid future trouble.
+
+Try to find a free assembler that can assemble EXP32.ASM to get rid
+of the dependency on TASM32.
