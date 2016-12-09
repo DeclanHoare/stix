@@ -243,14 +243,17 @@ procedure schreibe_datei(const name_:string;laenge:longint;const datumzeit:longi
     (* Zieldatei ”ffnen *)
 
     (*$IFDEF MEMORYSTREAM*)
-    if laenge<MaxAvail shr 1 then
-      begin
+    (*if laenge<MaxAvail shr 1 then
+      begin                       *)
         tempname:='';
         tempdatei:=New(pMemoryStream,Init(laenge,0));
-      end
-    else
+     (* end
+    else *)
     (*$ENDIF*)
-      begin
+     (* begin
+     It seems like this section was meant to deal with sector sizes... I think.
+     At any rate, it's doing something that only causes problems now.
+     I commented it out and now stix can extract everything in the Creatures data.z.
         tempname:=GetEnv('TMP');
         if tempname='' then
           tempname:=GetEnv('TEMP');
@@ -258,7 +261,7 @@ procedure schreibe_datei(const name_:string;laenge:longint;const datumzeit:longi
           tempname:=tempname+'/';
         tempname:=tempname+generiere_einmaligen_dateinamen;
         tempdatei:=New(pBufStream,Init(tempname,stCreate,16*1024));
-      end;
+      end;   *)
 
     fehlerpruefung(tempdatei,true);
 
