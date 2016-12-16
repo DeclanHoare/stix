@@ -4,7 +4,7 @@ This version has been modified by me so that it works on Linux.
 
 ## Building
 
-Please see the wiki page [[Building]] for the latest instructions.
+Please see the wiki page [[Building|Building]] for the latest instructions.
 
 ## Usage
 
