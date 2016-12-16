@@ -9,6 +9,7 @@ Please see the wiki page [Building](https://github.com/RogueAI42/stix/wiki/Build
 ## Usage
 
 To use stix, run:
+
 `stix FILENAME TARGETDIRECTORY`
 
 where FILENAME is the name of your data.z file and TARGETDIRECTORY
