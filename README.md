@@ -1,14 +1,29 @@
 # stix
 stix is an InstallShield 3 extractor created by Veit Kannegieser.
-This version has been modified so that it works on Linux.
-It is not complete, however (see Todo).
+This version has been modified by me so that it works on Linux.
+
+## Building
+
+Please see the wiki page [[Building]] for the latest instructions.
+
+## Usage
+
+To use stix, run:
+`stix FILENAME TARGETDIRECTORY`
+
+where FILENAME is the name of your data.z file and TARGETDIRECTORY
+is the root directory where it should be extracted.
 
 # Todo
 
-Subdirectories in data.z files are treated as top-level directories
-with backslashes in their names. Since backslashes are not directory
-delimiters on Linux, this results in an ugly and incorrect directory
-structure being extracted. As a result, I've tried to add a bit of
-code that replaces backslashes with forward slashes in path names,
-but my attempt didn't end up doing anything as far as I could tell,
-so I removed it to avoid future trouble.
+stix now seems to function perfectly on Linux, and I have everything
+I wanted out of it. However, the build process is absolutely nuts.
+A native Linux clone of TASM32, preferably a libre one, would be
+useful for this program, but the most important thing to do is figure
+out how to invoke vpc from the CLI so that the build can be scripted.
+Currently I get a stack overflow error when running a copy of stix
+that has been compiled using vpc rather than using the vp IDE.
+Obviously this makes automated packaging pretty near impossible.
+
+Apart from that, being able to plug the program into graphical
+archiving tools would be neat.
