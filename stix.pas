@@ -22,7 +22,6 @@
 (*            Typ-Definitionen *)
 (* 2001.06.12 EXE-Dateien mit verschluesselten Einzeldateinamen werden entpackt *)
 
-
 program stix;
 
 uses
@@ -71,6 +70,8 @@ var
   o,o_verzeichnisse,
   verzeichnis_anzahl    :longint;
   verzeichnis_name      :string;
+  new_file_name         :string;
+  slash_position        :longint;
   logischer_anfang_dieser_datei:longint; (* Diese Datei beginnt bei 1,4 MB *)
   logische_laenge_dieser_datei :longint; (* 0,3 KB Daten in dieser Datei *)
   logische_leseposition        :longint; (* Die n„chsten Daten kommen bei 1,5 MB *)
@@ -264,8 +265,19 @@ procedure schreibe_datei(const name_:string;laenge:longint;const datumzeit:longi
       end;   *)
 
     fehlerpruefung(tempdatei,true);
-
-    WriteLn('ú ',name_);
+    new_file_name:=name_;
+    slash_position:=1;
+        repeat
+        begin
+          slash_position:=Pos('\', new_file_name);
+          if slash_position > 0 then
+          begin
+            Delete(new_file_name, slash_position, 1);
+            Insert('/', new_file_name, slash_position);
+          end;
+        end;
+        until slash_position = 0;
+    WriteLn('ú ',new_file_name);
 
     repeat
 
@@ -361,9 +373,9 @@ procedure schreibe_datei(const name_:string;laenge:longint;const datumzeit:longi
 
     until laenge=0;
 
-    entpacke(name_);
+    entpacke(new_file_name);
 
-    setze_datum(name_,datumzeit);
+    setze_datum(new_file_name,datumzeit);
   end;
 
 
@@ -401,7 +413,7 @@ procedure entpacke_dateien;
   begin
     o_verzeichnisse:=o;
     verzeichnis_anzahl:=0;
-
+    slash_position:=1;
     (* Verzeichnisnamen *)
     quelle^.Seek(archiv_anfang+o);
     fehlerpruefung(quelle,true);
@@ -413,7 +425,18 @@ procedure entpacke_dateien;
         quelle^.Read(verzeichnis_block,verzeichnis_kopf.blocklaenge-4);
         fehlerpruefung(quelle,true);
 
-        verzeichnis_name:=zielverzeichnis+'/'+StrPas(verzeichnis_block.name_);
+        new_file_name:=StrPas(verzeichnis_block.name_);
+        repeat
+        begin
+          slash_position:=Pos('\', new_file_name);
+          if slash_position > 0 then
+          begin
+            Delete(new_file_name, slash_position, 1);
+            Insert('/', new_file_name, slash_position);
+          end;
+        end;
+        until slash_position = 0;
+        verzeichnis_name:=zielverzeichnis+'/'+new_file_name;
         WriteLn('+ mkdir ',verzeichnis_name);
         mkdir_verschachtelt(verzeichnis_name);
         Inc(o,verzeichnis_kopf.blocklaenge);
