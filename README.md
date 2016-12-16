@@ -4,7 +4,7 @@ This version has been modified by me so that it works on Linux.
 
 ## Building
 
-Please see the wiki page [[Building|Building]] for the latest instructions.
+Please see the wiki page [Building](https://github.com/RogueAI42/stix/wiki/Building) for the latest instructions.
 
 ## Usage
 
@@ -14,7 +14,7 @@ To use stix, run:
 where FILENAME is the name of your data.z file and TARGETDIRECTORY
 is the root directory where it should be extracted.
 
-# Todo
+## Todo
 
 stix now seems to function perfectly on Linux, and I have everything
 I wanted out of it. However, the build process is absolutely nuts.
