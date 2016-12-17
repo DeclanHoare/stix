@@ -17,14 +17,5 @@ is the root directory where it should be extracted.
 
 ## Todo
 
-stix now seems to function perfectly on Linux, and I have everything
-I wanted out of it. However, the build process is absolutely nuts.
-A native Linux clone of TASM32, preferably a libre one, would be
-useful for this program, but the most important thing to do is figure
-out how to invoke vpc from the CLI so that the build can be scripted.
-Currently I get a stack overflow error when running a copy of stix
-that has been compiled using vpc rather than using the vp IDE.
-Obviously this makes automated packaging pretty near impossible.
-
-Apart from that, being able to plug the program into graphical
-archiving tools would be neat.
+It would be nice to be able to use stix as a backend to extract data.z
+files in graphical archiving tools.
