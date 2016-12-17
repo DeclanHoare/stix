@@ -9,7 +9,7 @@ AS_IF([test "$tasm32Path" = "not found"], [AC_MSG_ERROR([Required program 'tasm3
 AC_PATH_PROG([vpcPath], [vpc], [not found])
 AS_IF([test "$vpcPath" = "not found"], [AC_MSG_ERROR([Required program 'vpc' not found.])])
 AC_PATH_PROG([pe2elfPath], [pe2elf], [not found])
-AS_IF([test "$pe2elfPath" = "not found"], [AC_MSG_ERROR([Required program 'vpc' not found.])])
+AS_IF([test "$pe2elfPath" = "not found"], [AC_MSG_ERROR([Required program 'pe2elf' not found.])])
 AC_ARG_WITH([vpo], [AS_HELP_STRING([--with-vpo=path: path to vp.vpo])], [vpoPath=$withval], [AC_SUBST([vpoPath],[$(echo "$(dirname $(readlink $(which vpc)))/vp.vpo")])])
 AC_SUBST([dozeSrcDir], [$(echo "$srcdir" | sed 's|/|\\|g')]) # FIXME: will not work if $srcdir is absolute
 AC_OUTPUT
