@@ -1,0 +1,15 @@
+AC_INIT([stix], [1.0], [https://github.com/RogueAI42/stix/issues], [stix], [http://kannegieser.net/veit])
+AC_PREREQ([2.68])
+AC_CONFIG_SRCDIR([src/stix.pas])
+AC_CONFIG_AUX_DIR([build-aux])
+AM_INIT_AUTOMAKE([1.11 -Wall foreign])
+AC_CONFIG_FILES([Makefile])
+AC_PATH_PROG([tasm32Path], [tasm32], [not found])
+AS_IF([test "$tasm32Path" = "not found"], [AC_MSG_ERROR([Required program 'tasm32' not found.])])
+AC_PATH_PROG([vpcPath], [vpc], [not found])
+AS_IF([test "$vpcPath" = "not found"], [AC_MSG_ERROR([Required program 'vpc' not found.])])
+AC_PATH_PROG([pe2elfPath], [pe2elf], [not found])
+AS_IF([test "$pe2elfPath" = "not found"], [AC_MSG_ERROR([Required program 'vpc' not found.])])
+AC_ARG_WITH([vpo], [AS_HELP_STRING([--with-vpo=path: path to vp.vpo])], [vpoPath=$withval], [AC_SUBST([vpoPath],[$(echo "$(dirname $(readlink $(which vpc)))/vp.vpo")])])
+AC_SUBST([dozeSrcDir], [$(echo "$srcdir" | sed 's|/|\\|g')]) # FIXME: will not work if $srcdir is absolute
+AC_OUTPUT
