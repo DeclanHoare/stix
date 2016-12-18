@@ -1,6 +1,8 @@
 bin_PROGRAMS = stix
-stix_SOURCES = stix.exe
-CLEANFILES = $(srcdir)/src/EXP_32/EXP32.OBJ
+stix_SOURCES =
+nodist_stix_SOURCES = stix.exe
+BUILT_SOURCES = stix.exe
+CLEANFILES = $(srcdir)/src/EXP_32/EXP32.OBJ stix.exe
 
 $(srcdir)/src/EXP_32/EXP32.OBJ:
 	$(tasm32Path) "$(dozeSrcDir)\\src\\EXP_32\\EXP32.ASM"
